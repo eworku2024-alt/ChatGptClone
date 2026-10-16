@@ -52,9 +52,13 @@ async function getMessageById(id) {
   if (rows.length === 0) return null;
   return toApiShape(rows[0]);
 }
+async function deleteMessage(id) {
+  await pool.query('DELETE FROM conversations WHERE id = ?', [id]);
+}
 
 module.exports = {
   getConversationHistory,
   getRecentHistoryForAi,
   insertMessage,
+  deleteMessage,
 };
