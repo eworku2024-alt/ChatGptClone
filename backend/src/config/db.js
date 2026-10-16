@@ -6,6 +6,7 @@ const pool = mysql.createPool({
   user: process.env.DB_USER || 'root',
   password: process.env.DB_PASSWORD || '',
   database: process.env.DB_NAME || 'chatgpt_clone',
+  ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : undefined, // needed for Aiven
   waitForConnections: true,
   connectionLimit: 10,
   queueLimit: 0,
